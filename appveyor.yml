@@ -1,0 +1,39 @@
+image: Visual Studio 2017
+
+platform:
+  - x64
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node 12 x64
+  - git config --global user.email "sgtaziz013@gmail.com"
+  - git config --global user.name "sgtaziz"
+  - yarn
+  - npm version %APPVEYOR_BUILD_VERSION%
+
+build_script:
+  - yarn build
+
+test: off
+
+deploy:
+  - provider: GitHub
+    auth_token:
+      secure: Jrg0D4xJ09xxQth609VXm0oPKSru+6arwvSpO5qnedqCJjVwLJA+mVr7YqaKa+Mb
+    draft: true
+    prerelease: false
+    repository: sgtaziz/10man.io-client
+
+artifacts:
+  - path: build\*Setup*.exe
+    name: Installer
+
+  - path: build\*.zip
+    name: Portable
+    type: zip
