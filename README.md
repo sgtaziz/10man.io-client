@@ -9,16 +9,16 @@ Clone this repository, install dependencies and run using either `dev`, `debug` 
 ```bash
 
 # Install dependencies
-npm install
+yarn
 
 # Run in `debug` mode, to debug app using VSCODE
-npm run debug
+yarn debug
 
 # Run in `dev` mode
-npm run dev
+yarn dev
 
 # Build installer for this app
-npm run build
+yarn build
 ```
 
 ### Project structure
